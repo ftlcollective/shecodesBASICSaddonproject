@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -9,160 +10,174 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fff;
-      color: #333;
-      transition: all 0.5s ease;
-      text-align: center;
-    }
+```
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.5s ease;
+  text-align: center;
+}
 
-    .dark-theme {
-      background-color: #000;
-      color: #fff;
-    }
+.dark-theme {
+  background-color: #000;
+  color: #fff;
+}
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
 
-    .toggle-button {
-      margin-bottom: 20px;
-      padding: 12px 25px;
-      background-color: #333;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s ease;
-    }
+.toggle-button {
+  margin-bottom: 20px;
+  padding: 12px 25px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
 
-    .toggle-button:hover {
-      background-color: #555;
-    }
+.toggle-button:hover {
+  background-color: #555;
+}
 
-    h1, h2 {
-      background-color: rgba(100, 100, 100, 0.6);
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 10px;
-      display: inline-block;
-      margin: 10px auto;
-    }
+h1, h2 {
+  background-color: rgba(100, 100, 100, 0.6);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 10px auto;
+}
 
-    .main-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 15px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      transition: transform 0.4s ease;
-    }
+.main-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease;
+}
 
-    .main-image:hover {
-      transform: scale(1.02);
-    }
+.main-image:hover {
+  transform: scale(1.02);
+}
 
-    .thumbnail-gallery {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
+/* ══ 4-COLUMN CSS GRID ══ */
+.thumbnail-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
 
-    .thumbnail-gallery img {
-      width: 150px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      cursor: pointer;
-    }
+@media (max-width: 768px) {
+  .thumbnail-gallery { grid-template-columns: repeat(2, 1fr); }
+}
 
-    .thumbnail-gallery img:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-    }
+@media (max-width: 480px) {
+  .thumbnail-gallery { grid-template-columns: 1fr; }
+}
 
-    a.image-link img {
-      border: 4px solid #ff69b4;
-    }
+.thumbnail-gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  display: block;
+}
 
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin: 30px auto;
-      max-width: 800px;
-      padding: 0 20px;
-    }
+.thumbnail-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
 
-    .diy-button {
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      background-color: #ff69b4;
-      color: white;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-top: 20px;
-    }
+a.image-link img {
+  border: 4px solid #ff69b4;
+}
 
-    .diy-button:hover {
-      background-color: #ff1493;
-    }
+p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 30px auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
 
-    footer {
-      margin-top: 50px;
-      font-size: 16px;
-      opacity: 0.8;
-    }
+.diy-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  background-color: #ff69b4;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.diy-button:hover {
+  background-color: #ff1493;
+}
+
+footer {
+  margin-top: 50px;
+  font-size: 16px;
+  opacity: 0.8;
+}
+```
+
   </style>
 </head>
 <body>
   <div class="container">
     <button class="toggle-button" id="theme-toggle">Toggle Theme</button>
 
-    <h1>Costume Making</h1>
-    <h2>My Creative Passion Project</h2>
+```
+<h1>Costume Making</h1>
+<h2>My Creative Passion Project</h2>
 
-    <!-- Featured Main Image -->
-    <img 
-      src="https://images.unsplash.com/photo-1617104541434-d390c5e7d194" 
-      alt="Main Costume Project" 
-      class="main-image" 
-    />
+<!-- Featured Main Image -->
+<img
+  src="https://images.unsplash.com/photo-1617104541434-d390c5e7d194"
+  alt="Main Costume Project"
+  class="main-image"
+/>
 
-    <!-- Mini Gallery Thumbnails -->
-    <div class="thumbnail-gallery">
-      <img src="https://images.unsplash.com/photo-1556909190-447590fc1c2a" alt="Costume Materials" />
-      <a href="https://www.handmadiya.com/2021/06/recycled-denim-bag-free-pattern-tutorial.html" class="image-link" target="_blank">
-        <img src="https://images.unsplash.com/photo-1603322053313-f823cad49e11" alt="Linked Hobby Image" />
-      </a>
-      <img src="https://images.unsplash.com/photo-1593956018601-11c9d77f1d41" alt="Fashion Sketches" />
-      <img src="https://images.unsplash.com/photo-1611390931082-fd869ffb7767" alt="3D Printing Prop" />
-      <img src="https://images.unsplash.com/photo-1601986162644-d7ee3d54f3f4" alt="Graphic Design Elements" />
-    </div>
+<!-- 4-Column Grid Gallery -->
+<div class="thumbnail-gallery">
+  <img src="https://images.unsplash.com/photo-1556909190-447590fc1c2a" alt="Costume Materials" />
+  <a href="https://www.handmadiya.com/2021/06/recycled-denim-bag-free-pattern-tutorial.html" class="image-link" target="_blank">
+    <img src="https://images.unsplash.com/photo-1603322053313-f823cad49e11" alt="Linked Hobby Image" />
+  </a>
+  <img src="https://images.unsplash.com/photo-1593956018601-11c9d77f1d41" alt="Fashion Sketches" />
+  <img src="https://images.unsplash.com/photo-1611390931082-fd869ffb7767" alt="3D Printing Prop" />
+</div>
 
-    <p>
-      Costume making is where my passion, skills, and imagination blend into reality. With formal qualifications in
-      <strong>Graphic Design</strong>, <strong>3D Printing</strong>, and <strong>Fashion Design</strong>,
-      I love combining these to bring bold characters and elegant designs to life. Whether it's sculpting a prop with a 3D printer,
-      sketching patterns, or cutting fabric, every costume tells a story.
-    </p>
+<p>
+  Costume making is where my passion, skills, and imagination blend into reality. With formal qualifications in
+  <strong>Graphic Design</strong>, <strong>3D Printing</strong>, and <strong>Fashion Design</strong>,
+  I love combining these to bring bold characters and elegant designs to life. Whether it's sculpting a prop with a 3D printer,
+  sketching patterns, or cutting fabric, every costume tells a story.
+</p>
 
-    <a href="https://www.handmadiya.com/search?q=costume" target="_blank">
-      <button class="diy-button">DIY Costume Making for Beginners</button>
-    </a>
+<a href="https://www.handmadiya.com/search?q=costume" target="_blank">
+  <button class="diy-button">DIY Costume Making for Beginners</button>
+</a>
 
-    <footer>
-      Coded by Tasneem Mahomed 👩‍💻
-    </footer>
+<footer>
+  Coded by Tasneem Mahomed 👩‍💻
+</footer>
+```
+
   </div>
 
   <script>
@@ -171,5 +186,6 @@
       document.body.classList.toggle("dark-theme");
     });
   </script>
+
 </body>
 </html>
