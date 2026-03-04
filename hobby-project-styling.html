@@ -1,154 +1,317 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Costume Making | My Creative World</title>
+  <title>Costume Making | Tasneem Mahomed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    /* ══════════════════════════════════════════
+       THEME VARIABLES
+    ══════════════════════════════════════════ */
+    :root { --transition: 0.5s cubic-bezier(.4,0,.2,1); }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fff;
-      color: #333;
-      transition: all 0.5s ease;
-    }
+```
+[data-theme="dark"] {
+  --bg:        #07080f;
+  --bg2:       #0d1120;
+  --card-bg:   rgba(15,20,45,0.82);
+  --accent:    #00e5ff;
+  --accent2:   #ff3cac;
+  --text:      #e8eeff;
+  --text-dim:  #7a8ab8;
+  --border:    rgba(0,229,255,0.18);
+  --glow:      rgba(0,229,255,0.28);
+  --glow2:     rgba(255,60,172,0.22);
+  --grid-line: rgba(0,229,255,0.07);
+  --btn-text:  #07080f;
+}
+[data-theme="light"] {
+  --bg:        #f2f5ff;
+  --bg2:       #e6ecff;
+  --card-bg:   rgba(255,255,255,0.88);
+  --accent:    #006aff;
+  --accent2:   #d4006e;
+  --text:      #0d1525;
+  --text-dim:  #4a5580;
+  --border:    rgba(0,106,255,0.2);
+  --glow:      rgba(0,106,255,0.15);
+  --glow2:     rgba(212,0,110,0.12);
+  --grid-line: rgba(0,106,255,0.07);
+  --btn-text:  #ffffff;
+}
 
-    .dark-theme {
-      background-color: #000;
-      color: #fff;
-    }
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      text-align: center;
-    }
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden;
+  min-height: 100vh;
+  padding: 30px;
+  text-align: center;
 
-    h1, h2 {
-      background-color: rgba(100, 100, 100, 0.6);
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 10px;
-      display: inline-block;
-      margin: 10px auto;
-    }
+  /* CSS BACKGROUND PROPERTIES */
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -20%, var(--glow), transparent),
+    radial-gradient(ellipse 50% 40% at 90% 80%, var(--glow2), transparent),
+    repeating-linear-gradient(0deg, transparent, transparent 59px, var(--grid-line) 59px, var(--grid-line) 60px),
+    repeating-linear-gradient(90deg, transparent, transparent 59px, var(--grid-line) 59px, var(--grid-line) 60px);
+  background-attachment: fixed;
+  background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+}
 
-    .toggle-button {
-      margin-bottom: 30px;
-      padding: 12px 25px;
-      background-color: #333;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s ease;
-    }
+/* ══════════════════════════════════════════
+   THEME TOGGLE
+══════════════════════════════════════════ */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 999;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 8px 18px;
+  cursor: pointer;
+  color: var(--accent);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 18px var(--glow);
+}
+.theme-toggle:hover {
+  background: var(--accent);
+  color: var(--btn-text);
+  box-shadow: 0 0 30px var(--glow);
+}
+.theme-toggle svg { width: 16px; height: 16px; }
 
-    .toggle-button:hover {
-      background-color: #555;
-    }
+/* ══════════════════════════════════════════
+   HEADINGS
+══════════════════════════════════════════ */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 80px 0 10px;
+}
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-style: italic;
+  color: var(--text-dim);
+  margin-bottom: 40px;
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin: 40px auto;
-    }
+/* ══════════════════════════════════════════
+   MAIN IMAGE
+══════════════════════════════════════════ */
+.main-image {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.main-image:hover {
+  /* CSS TRANSFORM PROPERTIES */
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 60px var(--glow);
+}
+.main-image img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  max-height: 400px;
+}
 
-    .gallery img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      display: block;
-      margin: 0 auto;
-      transition: transform 0.3s ease;
-    }
+/* ══════════════════════════════════════════
+   4-COLUMN CSS GRID
+══════════════════════════════════════════ */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+@media (max-width: 600px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+.gallery img {
+  width: 100%;
+  height: 100px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery img:hover {
+  /* CSS TRANSFORM PROPERTIES */
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px var(--glow);
+}
 
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
+/* ══════════════════════════════════════════
+   PARAGRAPH
+══════════════════════════════════════════ */
+p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-dim);
+  margin: 0 auto 40px;
+  max-width: 800px;
+}
+p strong { color: var(--accent); }
 
-    a.image-link img {
-      border: 4px solid #ff69b4;
-    }
+/* ══════════════════════════════════════════
+   CTA BUTTON
+══════════════════════════════════════════ */
+.diy-button {
+  display: inline-block;
+  padding: 14px 38px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  border-radius: 50px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 30px var(--glow);
+}
+.diy-button:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 40px var(--glow);
+}
 
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin: 30px auto;
-      max-width: 800px;
-      padding: 0 20px;
-    }
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+```
 
-    .diy-button {
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      background-color: #ff69b4;
-      color: white;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 20px;
-    }
-
-    .diy-button:hover {
-      background-color: #ff1493;
-    }
-
-    footer {
-      margin-top: 50px;
-      font-size: 16px;
-      opacity: 0.8;
-    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <button class="toggle-button" id="theme-toggle">Toggle Theme</button>
 
-    <h1>Costume Making</h1>
-    <h2>My Creative Passion Project</h2>
+  <!-- THEME TOGGLE -->
 
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1617104541434-d390c5e7d194" alt="Sewing Tools" />
-      <img src="https://images.unsplash.com/photo-1556909190-447590fc1c2a" alt="Costume Materials" />
-      <a href="https://www.handmadiya.com/2021/06/recycled-denim-bag-free-pattern-tutorial.html" class="image-link" target="_blank">
-        <img src="https://images.unsplash.com/photo-1603322053313-f823cad49e11" alt="Linked Hobby Image" />
-      </a>
-      <img src="https://images.unsplash.com/photo-1593956018601-11c9d77f1d41" alt="Fashion Sketches" />
-      <img src="https://images.unsplash.com/photo-1611390931082-fd869ffb7767" alt="3D Printing Costume Prop" />
-      <img src="https://images.unsplash.com/photo-1601986162644-d7ee3d54f3f4" alt="Graphic Design Elements" />
-    </div>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+    <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+    <span id="theme-label">Light Mode</span>
+  </button>
 
-    <p>
-      Costume making is where my passion, skills, and imagination blend into reality. With formal qualifications in
-      <strong>Graphic Design</strong>, <strong>3D Printing</strong>, and <strong>Fashion Design</strong>,
-      I love combining these to bring bold characters and elegant designs to life. Whether it's sculpting a prop with a 3D printer,
-      sketching patterns, or cutting fabric, every costume tells a story.
-    </p>
+  <!-- HEADINGS -->
 
-    <a href="https://www.handmadiya.com/search?q=costume" target="_blank">
-      <button class="diy-button">DIY Costume Making for Beginners</button>
+  <h1>Costume Making</h1>
+  <h2>My favorite hobby</h2>
+
+  <!-- MAIN LINKED IMAGE -->
+
+  <div class="main-image">
+    <a href="https://www.handmadiya.com/2021/06/recycled-denim-bag-free-pattern-tutorial.html" target="_blank">
+      <img src="https://images.unsplash.com/photo-1617104541434-d390c5e7d194" alt="Costume Making" />
     </a>
-
-    <footer>
-      Coded by Tasneem Mahomed 👩‍💻
-    </footer>
   </div>
 
+  <!-- 4-COLUMN IMAGE GRID -->
+
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1556909190-447590fc1c2a" alt="Costume Materials" />
+    <img src="https://images.unsplash.com/photo-1603322053313-f823cad49e11" alt="Sewing" />
+    <img src="https://images.unsplash.com/photo-1593956018601-11c9d77f1d41" alt="Fashion Sketches" />
+    <img src="https://images.unsplash.com/photo-1611390931082-fd869ffb7767" alt="3D Printing Prop" />
+  </div>
+
+  <!-- DESCRIPTION -->
+
+  <p>
+    Costume making is where my passion, skills, and imagination blend into reality. With formal qualifications in
+    <strong>Graphic Design</strong>, <strong>3D Printing</strong>, and <strong>Fashion Design</strong>,
+    I love combining these to bring bold characters and elegant designs to life. Whether it's sculpting a prop
+    with a 3D printer, sketching patterns, or cutting fabric, every costume tells a story.
+  </p>
+
+  <!-- CTA BUTTON -->
+
+  <a href="https://www.handmadiya.com/search?q=costume" target="_blank" class="diy-button">
+    DIY Costume Making for Beginners
+  </a>
+
+  <!-- FOOTER -->
+
+  <footer>
+    Coded with 💜 by Tasneem Mahomed
+  </footer>
+
   <script>
-    const toggleButton = document.getElementById("theme-toggle");
-    toggleButton.addEventListener("click", function () {
-      document.body.classList.toggle("dark-theme");
-    });
+    function toggleTheme() {
+      const html  = document.documentElement;
+      const icon  = document.getElementById('theme-icon');
+      const label = document.getElementById('theme-label');
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        label.textContent = 'Dark Mode';
+        icon.innerHTML = `<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" fill="none"/>`;
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        label.textContent = 'Light Mode';
+        icon.innerHTML = `
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+      }
+    }
   </script>
+
 </body>
 </html>
