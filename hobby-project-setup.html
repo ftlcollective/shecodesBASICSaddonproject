@@ -7,6 +7,9 @@
   <title>Costume Making | Tasneem Mahomed</title>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
+    /* ══════════════════════════════════════════
+       THEME VARIABLES
+    ══════════════════════════════════════════ */
     :root { --transition: 0.5s cubic-bezier(.4,0,.2,1); }
 
 ```
@@ -39,6 +42,9 @@
   --btn-text:  #ffffff;
 }
 
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -50,6 +56,8 @@ body {
   min-height: 100vh;
   padding: 30px;
   text-align: center;
+
+  /* CSS BACKGROUND PROPERTIES */
   background-image:
     radial-gradient(ellipse 80% 60% at 50% -20%, var(--glow), transparent),
     radial-gradient(ellipse 50% 40% at 90% 80%, var(--glow2), transparent),
@@ -59,7 +67,9 @@ body {
   background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
 }
 
-/* THEME TOGGLE */
+/* ══════════════════════════════════════════
+   THEME TOGGLE
+══════════════════════════════════════════ */
 .theme-toggle {
   position: fixed;
   top: 20px;
@@ -86,10 +96,13 @@ body {
 .theme-toggle:hover {
   background: var(--accent);
   color: var(--btn-text);
+  box-shadow: 0 0 30px var(--glow);
 }
 .theme-toggle svg { width: 16px; height: 16px; }
 
-/* HEADINGS */
+/* ══════════════════════════════════════════
+   HEADINGS
+══════════════════════════════════════════ */
 h1 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.8rem, 7vw, 5.5rem);
@@ -108,7 +121,9 @@ h2 {
   margin-bottom: 40px;
 }
 
-/* MAIN IMAGE */
+/* ══════════════════════════════════════════
+   MAIN IMAGE
+══════════════════════════════════════════ */
 .main-image {
   max-width: 800px;
   margin: 0 auto 30px;
@@ -119,6 +134,7 @@ h2 {
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 .main-image:hover {
+  /* CSS TRANSFORM PROPERTIES */
   transform: translateY(-6px) scale(1.01);
   box-shadow: 0 20px 60px var(--glow);
 }
@@ -129,7 +145,9 @@ h2 {
   max-height: 400px;
 }
 
-/* 4-COLUMN GRID */
+/* ══════════════════════════════════════════
+   4-COLUMN CSS GRID
+══════════════════════════════════════════ */
 .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -142,18 +160,21 @@ h2 {
 }
 .gallery img {
   width: 100%;
+  height: 100px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   object-fit: cover;
-  height: 100px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .gallery img:hover {
+  /* CSS TRANSFORM PROPERTIES */
   transform: scale(1.05);
   box-shadow: 0 8px 30px var(--glow);
 }
 
-/* PARAGRAPH */
+/* ══════════════════════════════════════════
+   PARAGRAPH
+══════════════════════════════════════════ */
 p {
   font-size: 1.05rem;
   line-height: 1.75;
@@ -163,7 +184,9 @@ p {
 }
 p strong { color: var(--accent); }
 
-/* CTA BUTTON */
+/* ══════════════════════════════════════════
+   CTA BUTTON
+══════════════════════════════════════════ */
 .diy-button {
   display: inline-block;
   padding: 14px 38px;
@@ -186,7 +209,9 @@ p strong { color: var(--accent); }
   box-shadow: 0 10px 40px var(--glow);
 }
 
-/* FOOTER */
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
 footer {
   margin-top: 60px;
   padding-top: 30px;
@@ -219,10 +244,12 @@ footer {
     <span id="theme-label">Light Mode</span>
   </button>
 
+  <!-- HEADINGS -->
+
   <h1>Costume Making</h1>
   <h2>My favorite hobby</h2>
 
-  <!-- Main linked image -->
+  <!-- MAIN LINKED IMAGE -->
 
   <div class="main-image">
     <a href="https://www.handmadiya.com/2021/06/recycled-denim-bag-free-pattern-tutorial.html" target="_blank">
@@ -230,7 +257,7 @@ footer {
     </a>
   </div>
 
-  <!-- 4-image grid -->
+  <!-- 4-COLUMN IMAGE GRID -->
 
   <div class="gallery">
     <img src="https://images.unsplash.com/photo-1556909190-447590fc1c2a" alt="Costume Materials" />
@@ -239,6 +266,8 @@ footer {
     <img src="https://images.unsplash.com/photo-1611390931082-fd869ffb7767" alt="3D Printing Prop" />
   </div>
 
+  <!-- DESCRIPTION -->
+
   <p>
     Costume making is where my passion, skills, and imagination blend into reality. With formal qualifications in
     <strong>Graphic Design</strong>, <strong>3D Printing</strong>, and <strong>Fashion Design</strong>,
@@ -246,9 +275,13 @@ footer {
     with a 3D printer, sketching patterns, or cutting fabric, every costume tells a story.
   </p>
 
+  <!-- CTA BUTTON -->
+
   <a href="https://www.handmadiya.com/search?q=costume" target="_blank" class="diy-button">
     DIY Costume Making for Beginners
   </a>
+
+  <!-- FOOTER -->
 
   <footer>
     Coded with 💜 by Tasneem Mahomed
