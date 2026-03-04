@@ -1,59 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Theme Toggle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
-    body {
-      background: white;
-      color: #333;
-      font-family: Arial, sans-serif;
-      transition: all 0.5s ease;
-      text-align: center;
-      padding: 50px;
-    }
+    /* ══════════════════════════════════════════
+       THEME VARIABLES
+    ══════════════════════════════════════════ */
+    :root { --transition: 0.5s cubic-bezier(.4,0,.2,1); }
 
-    .dark {
-      background: #000;
-      color: white;
-    }
+```
+[data-theme="dark"] {
+  --bg:        #07080f;
+  --bg2:       #0d1120;
+  --card-bg:   rgba(15,20,45,0.82);
+  --accent:    #00e5ff;
+  --accent2:   #ff3cac;
+  --text:      #e8eeff;
+  --text-dim:  #7a8ab8;
+  --border:    rgba(0,229,255,0.18);
+  --glow:      rgba(0,229,255,0.28);
+  --glow2:     rgba(255,60,172,0.22);
+  --grid-line: rgba(0,229,255,0.07);
+  --btn-text:  #07080f;
+}
+[data-theme="light"] {
+  --bg:        #f2f5ff;
+  --bg2:       #e6ecff;
+  --card-bg:   rgba(255,255,255,0.88);
+  --accent:    #006aff;
+  --accent2:   #d4006e;
+  --text:      #0d1525;
+  --text-dim:  #4a5580;
+  --border:    rgba(0,106,255,0.2);
+  --glow:      rgba(0,106,255,0.15);
+  --glow2:     rgba(212,0,110,0.12);
+  --grid-line: rgba(0,106,255,0.07);
+  --btn-text:  #ffffff;
+}
 
-    button {
-      font-size: 20px;
-      padding: 12px 24px;
-      margin-top: 30px;
-      background-color: #333;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    button:hover {
-      background-color: #555;
-    }
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden;
+  min-height: 100vh;
+  text-align: center;
+  padding: 50px 24px;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -20%, var(--glow), transparent),
+    radial-gradient(ellipse 50% 40% at 90% 80%, var(--glow2), transparent),
+    repeating-linear-gradient(0deg, transparent, transparent 59px, var(--grid-line) 59px, var(--grid-line) 60px),
+    repeating-linear-gradient(90deg, transparent, transparent 59px, var(--grid-line) 59px, var(--grid-line) 60px);
+  background-attachment: fixed;
+  background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+}
+
+/* ══════════════════════════════════════════
+   HEADINGS
+══════════════════════════════════════════ */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  animation: fadeUp 0.8s ease both;
+}
+
+p {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  margin-bottom: 40px;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+/* ══════════════════════════════════════════
+   THEME TOGGLE BUTTON
+══════════════════════════════════════════ */
+.theme-toggle {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 12px 28px;
+  cursor: pointer;
+  color: var(--accent);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 18px var(--glow);
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+.theme-toggle:hover {
+  background: var(--accent);
+  color: var(--btn-text);
+  box-shadow: 0 0 30px var(--glow);
+  transform: translateY(-3px) scale(1.04);
+}
+.theme-toggle svg { width: 18px; height: 18px; }
+
+/* ══════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+```
+
   </style>
 </head>
 <body>
-  <h1>🌗 Toggle Light/Dark Theme</h1>
+
+  <h1>🌗 Toggle Light / Dark Theme</h1>
   <p>Click the button to switch modes</p>
-  <button id="theme-button">Switch Theme</button>
+
+  <button class="theme-toggle" id="theme-button">
+    <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="none"/>
+    </svg>
+    <span id="theme-label">Switch to Light Theme</span>
+  </button>
 
   <script>
     let button = document.querySelector("#theme-button");
 
     button.addEventListener("click", function () {
-      document.body.classList.toggle("dark");
+      const html  = document.documentElement;
+      const icon  = document.getElementById('theme-icon');
+      const label = document.getElementById('theme-label');
 
-      if (document.body.classList.contains("dark")) {
-        button.innerHTML = "Switch to Light Theme";
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        label.textContent = 'Switch to Dark Theme';
+        icon.innerHTML = `<circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
       } else {
-        button.innerHTML = "Switch to Dark Theme";
+        html.setAttribute('data-theme', 'dark');
+        label.textContent = 'Switch to Light Theme';
+        icon.innerHTML = `<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="none"/>`;
       }
     });
   </script>
+
 </body>
 </html>
